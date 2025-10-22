@@ -1,25 +1,20 @@
 @extends('layout')
 
-@section('title', 'Testimonials')
-
 @section('content')
-<section class="py-12 text-center">
-  <h1 class="text-4xl font-bold text-indigo-700 mb-4">What Our Clients Say</h1>
-  <p class="text-gray-600 mb-6">See what people think about MyBrand.</p>
+<section class="py-10">
+  <h2 class="text-3xl font-bold text-center mb-8">What People Say</h2>
 
-  <div class="max-w-4xl mx-auto grid md:grid-cols-3 gap-6 px-6">
-    <div class="bg-white shadow-md rounded-xl p-6">
-      <p class="text-gray-700 italic">“MyBrand helped me launch my business online easily!”</p>
-      <h4 class="mt-4 font-semibold text-indigo-700">– John Doe</h4>
-    </div>
-    <div class="bg-white shadow-md rounded-xl p-6">
-      <p class="text-gray-700 italic">“Excellent support and design quality.”</p>
-      <h4 class="mt-4 font-semibold text-indigo-700">– Sarah K.</h4>
-    </div>
-    <div class="bg-white shadow-md rounded-xl p-6">
-      <p class="text-gray-700 italic">“Highly recommend MyBrand for startups.”</p>
-      <h4 class="mt-4 font-semibold text-indigo-700">– Peter M.</h4>
-    </div>
+  <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 px-6">
+    @forelse($testimonials as $testimonial)
+      <div class="bg-white shadow-md p-6 rounded-lg">
+        <img src="{{ $testimonial->photo }}" alt="photo" class="w-16 h-16 rounded-full mx-auto mb-4">
+        <h3 class="text-lg font-semibold text-center">{{ $testimonial->name }}</h3>
+        <p class="text-sm text-gray-500 text-center">{{ $testimonial->position }}</p>
+        <p class="mt-3 text-gray-600 text-center">"{{ $testimonial->message }}"</p>
+      </div>
+    @empty
+      <p class="text-center col-span-full">No testimonials yet.</p>
+    @endforelse
   </div>
 </section>
 @endsection

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Testimonial;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +30,8 @@ Route::get('/services', function () {
 })->name('services');
 
 Route::get('/testimonials', function () {
-    return view('testimonials');
+    $testimonials = Testimonial::all();
+    return view('testimonials', compact('testimonials'));
 })->name('testimonials');
 
 Route::get('/contact', function () {
