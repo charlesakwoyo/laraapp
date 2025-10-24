@@ -12,7 +12,7 @@ class TestimonialFactory extends Factory
             'name' => fake()->name(),
             'position' => fake()->jobTitle(),
             'message' => fake()->paragraph(),
-            'photo' => 'https://via.placeholder.com/100', // placeholder image
+            'photo' => 'https://via.placeholder.com/100',
         ];
     }
 }

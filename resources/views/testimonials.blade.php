@@ -16,5 +16,10 @@
       <p class="text-center col-span-full">No testimonials yet.</p>
     @endforelse
   </div>
+
+  
+  <div class="mt-10 flex justify-center">
+    {{ $testimonials->links() }}
+  </div>
 </section>
 @endsection

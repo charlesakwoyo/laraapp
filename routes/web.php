@@ -1,57 +1,47 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Models\Testimonial;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\TestimonialController;
 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
-| These routes control what each page shows when visited.
-| We’ve added home, features, about, services, testimonials, and contact pages.
-|--------------------------------------------------------------------------
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+// =========================
+// PUBLIC ROUTES
+// =========================
+Route::get('/', fn() => view('home'))->name('home');
+Route::get('/features', fn() => view('features'))->name('features');
+Route::get('/about', fn() => view('about'))->name('about');
+Route::get('/services', [ServiceController::class, 'index'])->name('services.index');
+Route::get('/testimonials', [TestimonialController::class, 'index'])->name('testimonials');
+Route::get('/contact', fn() => view('contact'))->name('contact');
 
-Route::get('/features', function () {
-    return view('features');
-})->name('features');
-
-Route::get('/about', function () {
-    return view('about');
-})->name('about');
-
-Route::get('/services', function () {
-    return view('services');
-})->name('services');
-
-Route::get('/testimonials', function () {
-    $testimonials = Testimonial::all();
-    return view('testimonials', compact('testimonials'));
-})->name('testimonials');
-
-Route::get('/contact', function () {
-    return view('contact');
-})->name('contact');
-
-/*
-|--------------------------------------------------------------------------
-| Authenticated Routes (from Laravel Breeze)
-|--------------------------------------------------------------------------
-*/
-
-Route::get('/dashboard', function () {
+// =========================
+// DASHBOARD ROUTE
+// =========================
+Route::middleware(['auth', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->name('dashboard');
 
+// =========================
+// SERVICE MANAGEMENT (CRUD)
+// =========================
+Route::middleware(['auth'])->group(function () {
+    Route::resource('services', ServiceController::class);
+});
+
+// =========================
+// PROFILE ROUTES
+// =========================
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
