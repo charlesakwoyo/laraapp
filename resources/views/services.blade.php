@@ -1,29 +1,22 @@
-@extends('layout')
-
-@section('title', 'Our Services - MyBrand')
+@extends('layouts.app') {{-- or your main public layout --}}
+@section('title', 'Our Services')
 
 @section('content')
-<section class="py-20">
-  <div class="container mx-auto text-center px-6">
-    <h1 class="text-4xl font-bold mb-4 text-indigo-700">Our Services</h1>
-    <p class="max-w-2xl mx-auto text-gray-600 mb-12">
-      We offer a full range of digital solutions designed to help your brand stand out.
-    </p>
+<div class="container mx-auto py-10">
+    <h1 class="text-3xl font-bold mb-6 text-center">Our Services</h1>
 
-    <div class="grid md:grid-cols-3 gap-10">
-      <div class="bg-white p-8 rounded-2xl shadow hover:shadow-lg transition">
-        <h3 class="text-xl font-semibold mb-2">Web Design</h3>
-        <p class="text-gray-600">Modern and responsive designs built for all devices.</p>
-      </div>
-      <div class="bg-white p-8 rounded-2xl shadow hover:shadow-lg transition">
-        <h3 class="text-xl font-semibold mb-2">Development</h3>
-        <p class="text-gray-600">Robust web apps using the latest technologies.</p>
-      </div>
-      <div class="bg-white p-8 rounded-2xl shadow hover:shadow-lg transition">
-        <h3 class="text-xl font-semibold mb-2">Branding</h3>
-        <p class="text-gray-600">Creative identity and brand strategy for your business.</p>
-      </div>
-    </div>
-  </div>
-</section>
+    @if ($services->count() > 0)
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            @foreach ($services as $service)
+                <div class="bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition">
+                    <h2 class="text-xl font-semibold text-gray-800 mb-2">{{ $service->title }}</h2>
+                    <p class="text-gray-600 mb-4">{{ Str::limit($service->description, 120) }}</p>
+                    <a href="#" class="text-indigo-600 hover:underline font-medium">Read more →</a>
+                </div>
+            @endforeach
+        </div>
+    @else
+        <p class="text-center text-gray-500">No services available at the moment.</p>
+    @endif
+</div>
 @endsection

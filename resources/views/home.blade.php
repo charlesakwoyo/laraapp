@@ -15,11 +15,11 @@
         Empower your ideas with MyBrand’s all-in-one platform designed for creators, developers, and businesses.
       </p>
       <div class="space-x-4">
-        <a href="#"
+        <a href="register"
           class="bg-white text-indigo-600 font-semibold px-6 py-3 rounded-lg shadow hover:bg-indigo-50 transition transform hover:scale-105">
           Get Started
         </a>
-        <a href="#features"
+        <a href="features"
           class="border border-white font-semibold px-6 py-3 rounded-lg hover:bg-white hover:text-indigo-600 transition transform hover:scale-105">
           Learn More
         </a>
@@ -28,7 +28,7 @@
     <div class="md:w-1/2 mt-10 md:mt-0">
       <img
         src="https://cdn.pixabay.com/photo/2017/01/10/23/01/startup-1965481_1280.png"
-        alt="Hero Illustration"
+        alt=""
         class="w-full animate-float"
       />
     </div>
@@ -68,7 +68,7 @@
       <p class="text-gray-600 leading-relaxed">
         We’re a passionate team of developers and designers dedicated to helping people create exceptional digital experiences.
       </p>
-      <a href="#"
+      <a href="services"
          class="bg-indigo-600 text-white px-6 py-3 rounded-lg shadow hover:bg-indigo-700 transition">
          Read More
       </a>

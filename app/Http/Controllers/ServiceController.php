@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
+    public function publicIndex()
+{
+    $services = Service::latest()->get();
+    return view('frontend.services', compact('services'));
+}
+
     public function index()
     {
         $services = Service::all();

@@ -15,8 +15,8 @@
         AdminPanel
       </div>
       <nav class="flex-1 p-4 space-y-2">
+        <a href="{{ route('users.index') }}" class="block py-2.5 px-4 rounded hover:bg-indigo-600 transition">👥 Users</a>
         <a href="{{ route('services.index') }}" class="block py-2.5 px-4 rounded hover:bg-indigo-600 transition">🛠 Services</a>
-        <a href="#" class="block py-2.5 px-4 rounded hover:bg-indigo-600 transition">👥 Users</a>
         <a href="#" class="block py-2.5 px-4 rounded hover:bg-indigo-600 transition">💬 Messages</a>
         <a href="#" class="block py-2.5 px-4 rounded hover:bg-indigo-600 transition">⚙️ Settings</a>
       </nav>
