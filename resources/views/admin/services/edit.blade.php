@@ -1,4 +1,4 @@
-@extends('dashboard.layout')
+@extends('layouts.admin')
 
 @section('title', 'Edit Service')
 

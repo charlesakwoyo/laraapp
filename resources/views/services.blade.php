@@ -1,4 +1,4 @@
-@extends('layouts.app') {{-- or your main public layout --}}
+@extends('layout')
 @section('title', 'Our Services')
 
 @section('content')

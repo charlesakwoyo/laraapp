@@ -5,7 +5,7 @@
 @section('content')
 <div class="flex justify-between items-center mb-6">
   <h2 class="text-2xl font-bold">Services</h2>
-  <a href="{{ route('services.create') }}" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-500">+ Add Service</a>
+  <a href="{{ route('admin.services.create') }}" class="bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-500">+ Add Service</a>
 </div>
 
 @if (session('success'))
@@ -30,8 +30,8 @@
         <td class="p-3">{{ $service->description }}</td>
         <td class="p-3">{{ $service->icon }}</td>
         <td class="p-3 text-center">
-          <a href="{{ route('services.edit', $service->id) }}" class="text-blue-600 hover:underline">Edit</a> |
-          <form action="{{ route('services.destroy', $service->id) }}" method="POST" class="inline">
+          <a href="{{ route('admin.services.edit', $service->id) }}" class="text-blue-600 hover:underline">Edit</a> |
+          <form action="{{ route('admin.services.destroy', $service->id) }}" method="POST" class="inline">
             @csrf
             @method('DELETE')
             <button type="submit" class="text-red-600 hover:underline">Delete</button>

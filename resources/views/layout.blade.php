@@ -27,10 +27,12 @@
 
       <ul id="menu" class="hidden md:flex space-x-6 font-medium text-gray-700 md:items-center">
         <li><a href="{{ route('home') }}" class="hover:text-indigo-600">Home</a></li>
-        <li><a href="{{ route('features') }}" class="hover:text-indigo-600">Features</a></li>
-        <li><a href="{{ route('about') }}" class="hover:text-indigo-600">About</a></li>
-        <li><a href="{{ route('testimonials') }}" class="hover:text-indigo-600">Testimonials</a></li>
-        <li><a href="{{ route('contact') }}" class="hover:text-indigo-600">Contact</a></li>
+<li><a href="{{ route('features') }}" class="hover:text-indigo-600">Features</a></li>
+<li><a href="{{ route('about') }}" class="hover:text-indigo-600">About</a></li>
+<li><a href="{{ route('services') }}" class="hover:text-indigo-600">Services</a></li>
+<li><a href="{{ route('testimonials') }}" class="hover:text-indigo-600">Testimonials</a></li>
+<li><a href="{{ route('contact') }}" class="hover:text-indigo-600">Contact</a></li>
+
       </ul>
     </div>
 
@@ -38,10 +40,12 @@
     <div id="mobile-menu" class="hidden md:hidden bg-white shadow-inner">
       <ul class="flex flex-col items-center py-4 space-y-3 font-medium text-gray-700">
         <li><a href="{{ route('home') }}" class="hover:text-indigo-600">Home</a></li>
-        <li><a href="{{ route('features') }}" class="hover:text-indigo-600">Features</a></li>
-        <li><a href="{{ route('about') }}" class="hover:text-indigo-600">About</a></li>
-        <li><a href="{{ route('testimonials') }}" class="hover:text-indigo-600">Testimonials</a></li>
-        <li><a href="{{ route('contact') }}" class="hover:text-indigo-600">Contact</a></li>
+<li><a href="{{ route('features') }}" class="hover:text-indigo-600">Features</a></li>
+<li><a href="{{ route('about') }}" class="hover:text-indigo-600">About</a></li>
+<li><a href="{{ route('services') }}" class="hover:text-indigo-600">Services</a></li>
+<li><a href="{{ route('testimonials') }}" class="hover:text-indigo-600">Testimonials</a></li>
+<li><a href="{{ route('contact') }}" class="hover:text-indigo-600">Contact</a></li>
+
       </ul>
     </div>
   </nav>

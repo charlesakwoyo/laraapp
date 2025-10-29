@@ -7,12 +7,18 @@ use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
+    // -----------------------------
+    // PUBLIC SERVICES (Frontend)
+    // -----------------------------
     public function publicIndex()
-{
-    $services = Service::latest()->get();
-    return view('frontend.services', compact('services'));
-}
+    {
+        $services = Service::latest()->get();
+        return view('services', compact('services'));
+    }
 
+    // -----------------------------
+    // ADMIN SERVICES (CRUD)
+    // -----------------------------
     public function index()
     {
         $services = Service::all();
@@ -34,7 +40,8 @@ class ServiceController extends Controller
 
         Service::create($validated);
 
-        return redirect()->route('services.index')->with('success', 'Service created successfully.');
+        return redirect()->route('admin.services.index')
+                         ->with('success', 'Service created successfully.');
     }
 
     public function edit(Service $service)
@@ -52,12 +59,15 @@ class ServiceController extends Controller
 
         $service->update($validated);
 
-        return redirect()->route('services.index')->with('success', 'Service updated successfully.');
+        return redirect()->route('admin.services.index')
+                         ->with('success', 'Service updated successfully.');
     }
 
     public function destroy(Service $service)
     {
         $service->delete();
-        return redirect()->route('services.index')->with('success', 'Service deleted successfully.');
+
+        return redirect()->route('admin.services.index')
+                         ->with('success', 'Service deleted successfully.');
     }
 }
