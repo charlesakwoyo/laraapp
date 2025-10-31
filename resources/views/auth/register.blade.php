@@ -1,52 +1,108 @@
-<x-guest-layout>
-    <form method="POST" action="{{ route('register') }}">
-        @csrf
+@extends('layout')
 
-        <!-- Name -->
-        <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-        </div>
+@section('title', 'Register')
 
-        <!-- Email Address -->
-        <div class="mt-4">
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
-        </div>
+@section('content')
+<section class="flex items-center justify-center min-h-screen bg-gradient-to-br from-indigo-50 via-white to-indigo-100">
+  <div class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md">
+    <h2 class="text-2xl font-bold text-center text-indigo-700 mb-6">Create Your Account</h2>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
+    <form method="POST" action="{{ route('register') }}" class="space-y-5">
+      @csrf
 
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="new-password" />
+      <!-- Name -->
+      <div>
+        <label for="name" class="block text-gray-700 font-medium mb-2">Full Name</label>
+        <input 
+          type="text" 
+          id="name" 
+          name="name" 
+          value="{{ old('name') }}"
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+          required
+        />
+        @error('name')
+          <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+        @enderror
+      </div>
 
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
-        </div>
+      <!-- Email -->
+      <div>
+        <label for="email" class="block text-gray-700 font-medium mb-2">Email Address</label>
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          value="{{ old('email') }}"
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+          required
+        />
+        @error('email')
+          <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+        @enderror
+      </div>
 
-        <!-- Confirm Password -->
-        <div class="mt-4">
-            <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+      <!-- Role Dropdown -->
+      <div>
+        <label for="role" class="block text-gray-700 font-medium mb-2">Select Role</label>
+        <select 
+          id="role" 
+          name="role"
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+          required
+        >
+          <option value="">-- Choose your role --</option>
+          <option value="user" {{ old('role') === 'user' ? 'selected' : '' }}>User</option>
+          <option value="employee" {{ old('role') === 'employee' ? 'selected' : '' }}>Employee</option>
+        </select>
+        @error('role')
+          <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+        @enderror
+      </div>
 
-            <x-text-input id="password_confirmation" class="block mt-1 w-full"
-                            type="password"
-                            name="password_confirmation" required autocomplete="new-password" />
+      <!-- Password -->
+      <div>
+        <label for="password" class="block text-gray-700 font-medium mb-2">Password</label>
+        <input 
+          type="password" 
+          id="password" 
+          name="password" 
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+          required
+        />
+        @error('password')
+          <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+        @enderror
+      </div>
 
-            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-        </div>
+      <!-- Confirm Password -->
+      <div>
+        <label for="password_confirmation" class="block text-gray-700 font-medium mb-2">Confirm Password</label>
+        <input 
+          type="password" 
+          id="password_confirmation" 
+          name="password_confirmation" 
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+          required
+        />
+      </div>
 
-        <div class="flex items-center justify-end mt-4">
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                {{ __('Already registered?') }}
-            </a>
+      <!-- Submit Button -->
+      <div class="pt-4">
+        <button 
+          type="submit" 
+          class="w-full bg-indigo-600 text-white py-2.5 rounded-lg font-semibold hover:bg-indigo-700 transition duration-200"
+        >
+          Register
+        </button>
+      </div>
 
-            <x-primary-button class="ms-4">
-                {{ __('Register') }}
-            </x-primary-button>
-        </div>
+      <!-- Login Link -->
+      <p class="text-center text-sm text-gray-600 mt-4">
+        Already have an account? 
+        <a href="{{ route('login') }}" class="text-indigo-600 hover:underline font-medium">Login here</a>
+      </p>
     </form>
-</x-guest-layout>
+  </div>
+</section>
+@endsection

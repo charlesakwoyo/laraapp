@@ -103,7 +103,7 @@
   <p class="text-indigo-200 mb-8 max-w-xl mx-auto">
     Get started today and bring your creative vision to life with MyBrand’s tools.
   </p>
-  <a href="#"
+  <a href="register"
     class="bg-white text-indigo-700 px-8 py-4 rounded-full font-semibold shadow hover:bg-indigo-100 transition transform hover:scale-105">
     Start Free Trial
   </a>
