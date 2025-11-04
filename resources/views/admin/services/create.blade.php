@@ -17,7 +17,7 @@
     @endif
 
     {{-- Create Service Form --}}
-    <form action="{{ route('services.store') }}" method="POST">
+    <form action="{{ route('admin.services.store') }}" method="POST">
         @csrf
 
         {{-- Title --}}
@@ -49,7 +49,7 @@
             <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg">
                 Save Service
             </button>
-            <a href="{{ route('services.index') }}" class="bg-gray-500 hover:bg-gray-600 text-white px-5 py-2 rounded-lg">
+            <a href="{{ route('admin.services.index') }}" class="bg-gray-500 hover:bg-gray-600 text-white px-5 py-2 rounded-lg">
                 Cancel
             </a>
         </div>

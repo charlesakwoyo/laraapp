@@ -42,24 +42,6 @@
         @enderror
       </div>
 
-      <!-- Role Dropdown -->
-      <div>
-        <label for="role" class="block text-gray-700 font-medium mb-2">Select Role</label>
-        <select 
-          id="role" 
-          name="role"
-          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
-          required
-        >
-          <option value="">-- Choose your role --</option>
-          <option value="user" {{ old('role') === 'user' ? 'selected' : '' }}>User</option>
-          <option value="employee" {{ old('role') === 'employee' ? 'selected' : '' }}>Employee</option>
-        </select>
-        @error('role')
-          <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
-        @enderror
-      </div>
-
       <!-- Password -->
       <div>
         <label for="password" class="block text-gray-700 font-medium mb-2">Password</label>
