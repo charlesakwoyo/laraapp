@@ -7,22 +7,15 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\Admin\ReportController;
 
-
 // Public Routes
-
 Route::get('/', fn() => view('home'))->name('home');
 Route::get('/features', fn() => view('features'))->name('features');
 Route::get('/about', fn() => view('about'))->name('about');
 Route::get('/services', [ServiceController::class, 'publicIndex'])->name('services.public');
 Route::get('/testimonials', [TestimonialController::class, 'index'])->name('testimonials');
 Route::get('/contact', fn() => view('contact'))->name('contact');
-Route::get('/services', [ServiceController::class, 'publicIndex'])->name('services');
 
-
-
-// Dashboard Routes
-
-// Unified dashboard redirect route
+// Dashboard Redirect Route
 Route::middleware(['auth'])->get('/dashboard', function () {
     if (auth()->user()->role === 'admin') {
         return redirect()->route('admin.dashboard');
@@ -31,12 +24,9 @@ Route::middleware(['auth'])->get('/dashboard', function () {
     }
 })->name('dashboard');
 
-
-// USER DASHBOARD
+// USER DASHBOARD & PROFILE
 Route::middleware(['auth', 'user.role'])->prefix('dashboard')->group(function () {
-    Route::get('/user', function () {
-        return view('dashboard.user');
-    })->name('dashboard.user');
+    Route::get('/user', fn() => view('dashboard.user'))->name('dashboard.user');
 
     // Profile management
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -44,30 +34,34 @@ Route::middleware(['auth', 'user.role'])->prefix('dashboard')->group(function ()
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-//  ADMIN DASHBOARD + SERVICES CRUD
+// ADMIN DASHBOARD, SERVICES, USERS, REPORTS
 Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(function () {
+
+    // Dashboard
     Route::get('/dashboard', fn() => view('dashboard.admin'))->name('dashboard');
+
+    // Services CRUD
     Route::resource('services', ServiceController::class);
+
+    // Users list
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
+
+    // Reports
+    Route::prefix('reports')->group(function () {
+        Route::get('/', [ReportController::class, 'index'])->name('reports.index');
+
+        // PDF Exports
+        Route::get('/users/pdf', [ReportController::class, 'usersPdf'])->name('reports.users.pdf');
+        Route::get('/services/pdf', [ReportController::class, 'servicesPdf'])->name('reports.services.pdf');
+        Route::get('/bookings/pdf', [ReportController::class, 'bookingsPdf'])->name('reports.bookings.pdf');
+
+        // Excel Exports
+        Route::get('/users/excel', [ReportController::class, 'usersExcel'])->name('reports.users.excel');
+        Route::get('/services/excel', [ReportController::class, 'servicesExcel'])->name('reports.services.excel');
+        Route::get('/bookings/excel', [ReportController::class, 'bookingsExcel'])->name('reports.bookings.excel');
+    });
+
 });
 
-
-
-Route::middleware(['auth', 'admin'])->prefix('admin')->group(function() {
-    Route::get('/reports', [ReportController::class, 'index'])->name('admin.reports.index');
-
-    Route::get('/reports/users/pdf', [ReportController::class, 'usersPdf']);
-    Route::get('/reports/services/pdf', [ReportController::class, 'servicesPdf']);
-    Route::get('/reports/bookings/pdf', [ReportController::class, 'bookingsPdf']);
-
-    Route::get('/reports/users/excel', [ReportController::class, 'usersExcel']);
-    Route::get('/reports/services/excel', [ReportController::class, 'servicesExcel']);
-    Route::get('/reports/bookings/excel', [ReportController::class, 'bookingsExcel']);
-});
-
-
-
-
-
-
+// Auth routes
 require __DIR__ . '/auth.php';

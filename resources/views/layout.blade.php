@@ -32,7 +32,7 @@
         <li><a href="{{ route('home') }}" class="hover:text-indigo-600">Home</a></li>
         <li><a href="{{ route('features') }}" class="hover:text-indigo-600">Features</a></li>
         <li><a href="{{ route('about') }}" class="hover:text-indigo-600">About</a></li>
-        <li><a href="{{ route('services') }}" class="hover:text-indigo-600">Services</a></li>
+        <li><a href="{{ route('services.public') }}" class="hover:text-indigo-600">Services</a></li>
         <li><a href="{{ route('testimonials') }}" class="hover:text-indigo-600">Testimonials</a></li>
         <li><a href="{{ route('contact') }}" class="hover:text-indigo-600">Contact</a></li>
 
@@ -62,7 +62,7 @@
         <li><a href="{{ route('home') }}" class="hover:text-indigo-600">Home</a></li>
         <li><a href="{{ route('features') }}" class="hover:text-indigo-600">Features</a></li>
         <li><a href="{{ route('about') }}" class="hover:text-indigo-600">About</a></li>
-        <li><a href="{{ route('services') }}" class="hover:text-indigo-600">Services</a></li>
+        <li><a href="{{ route('services.public') }}" class="hover:text-indigo-600">Services</a></li>
         <li><a href="{{ route('testimonials') }}" class="hover:text-indigo-600">Testimonials</a></li>
         <li><a href="{{ route('contact') }}" class="hover:text-indigo-600">Contact</a></li>
 

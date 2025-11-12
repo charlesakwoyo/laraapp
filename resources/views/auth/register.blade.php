@@ -7,7 +7,7 @@
   <div class="bg-white shadow-lg rounded-2xl p-8 w-full max-w-md">
     <h2 class="text-2xl font-bold text-center text-indigo-700 mb-6">Create Your Account</h2>
 
-    <form method="POST" action="{{ route('register') }}" class="space-y-5">
+    <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data" class="space-y-5">
       @csrf
 
       <!-- Name -->
@@ -67,6 +67,21 @@
           class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
           required
         />
+      </div>
+
+      <!-- Profile Photo -->
+      <div>
+        <label for="profile_photo" class="block text-gray-700 font-medium mb-2">Profile Photo (optional)</label>
+        <input 
+          type="file" 
+          id="profile_photo" 
+          name="profile_photo" 
+          accept="image/*"
+          class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+        />
+        @error('profile_photo')
+          <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+        @enderror
       </div>
 
       <!-- Submit Button -->

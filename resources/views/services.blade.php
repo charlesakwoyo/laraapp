@@ -11,7 +11,7 @@
                 <div class="bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition">
                     <h2 class="text-xl font-semibold text-gray-800 mb-2">{{ $service->title }}</h2>
                     <p class="text-gray-600 mb-4">{{ Str::limit($service->description, 120) }}</p>
-                    <a href="#" class="text-indigo-600 hover:underline font-medium">Read more →</a>
+                    <a href="#" class="text-indigo-600 hover:underline font-medium"></a>
                 </div>
             @endforeach
         </div>

@@ -1,12 +1,14 @@
+<?php
+
 namespace App\Exports;
 
-use App\Models\User;
+use App\Models\Service;
 use Maatwebsite\Excel\Concerns\FromCollection;
 
-class UsersExport implements FromCollection
+class ServicesExport implements FromCollection
 {
     public function collection()
     {
-        return User::all(['id', 'name', 'email', 'created_at']);
+        return Service::all(['id', 'name', 'description', 'created_at']);
     }
 }

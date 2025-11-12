@@ -6,16 +6,26 @@
 <div class="min-h-screen bg-gray-100 py-10 px-6">
 
     <!-- Header -->
-    <div class="flex flex-col md:flex-row justify-between items-center mb-8">
-        <div>
-            <h1 class="text-3xl font-bold text-indigo-700">MyBrand Dashboard</h1>
-            <p class="text-gray-600 mt-1">
-                Welcome back, <span class="font-semibold text-indigo-600">{{ auth()->user()->name }}</span> 
-            </p>
+    <div class="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+        <div class="flex items-center gap-4">
+            <!-- Profile Photo -->
+            <img 
+                src="{{ auth()->user()->profile_photo 
+                        ? asset('storage/' . auth()->user()->profile_photo) 
+                        : asset('images/default-avatar.png') }}" 
+                alt="Profile Photo" 
+                class="w-12 h-12 rounded-full border-2 border-indigo-600 object-cover"
+            >
+            <div>
+                <h1 class="text-3xl font-bold text-indigo-700">MyBrand Dashboard</h1>
+                <p class="text-gray-600 mt-1">
+                    Welcome back, <span class="font-semibold text-indigo-600">{{ auth()->user()->name }}</span>
+                </p>
+            </div>
         </div>
 
         <div class="mt-4 md:mt-0">
-            <a href="{{ route('services') }}"
+            <a href="{{ route('services.public') }}"
                class="bg-indigo-600 text-white px-5 py-2 rounded-lg shadow hover:bg-indigo-700 transition">
                + Request a Service
             </a>

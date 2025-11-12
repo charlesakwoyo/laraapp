@@ -7,16 +7,30 @@
 
     <!-- Header -->
     <div class="flex justify-between items-center mb-8">
-        <div>
-            <h1 class="text-3xl font-extrabold text-indigo-700">Admin Dashboard</h1>
-            <p class="text-gray-600">Welcome back, {{ auth()->user()->name ?? 'Admin' }} 👋</p>
+        <div class="flex items-center gap-4">
+            <!-- Profile Photo -->
+            <img 
+                src="{{ auth()->user()->profile_photo 
+                        ? asset('storage/' . auth()->user()->profile_photo) 
+                        : asset('images/default-avatar.png') }}" 
+                alt="Profile" 
+                class="w-12 h-12 rounded-full border-2 border-indigo-600 object-cover"
+            >
+
+            <!-- Welcome Message -->
+            <div>
+                <h1 class="text-3xl font-extrabold text-indigo-700">Admin Dashboard</h1>
+                <p class="text-gray-600">Welcome back, {{ auth()->user()->name ?? 'Admin' }} 👋</p>
+            </div>
         </div>
+
         <div class="flex gap-3">
             <!-- Generate Report Button -->
             <a href="{{ route('admin.reports.index') }}"
                class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg shadow">
                📄 Generate Report
             </a>
+
             <!-- Logout -->
             <a href="{{ route('logout') }}"
                onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
@@ -24,6 +38,7 @@
                Logout
             </a>
         </div>
+
         <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">@csrf</form>
     </div>
 
